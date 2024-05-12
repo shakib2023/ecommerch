@@ -1,0 +1,247 @@
+/* .andfood-header {
+  background-color: #fffbf5;
+} */
+
+:root {
+  --main-color: #f7ad00;
+  --hover-main-color: #e8aa00;
+  --white-color: #ffffff;
+  --black-color: #2b2540;
+  --navber-color: #424155;
+  --paragraph-color: #5a5a5c;
+  --bg-color: #faf7f2;
+  --transition: 0.4s all ease-in-out;
+}
+
+.topbar-area .container-fluid,
+.navbar .container-fluid {
+  max-width: 1900px !important;
+}
+.navbar-brand{
+  color: var(--main-color);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.navbar-brand:hover{
+  color: var(--main-color);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+/* topbar area */
+.topbar-list li a {
+  font-size: 15px;
+  font-weight: 400;
+  font-family: "Lato", sans-serif;
+  border-right: 1px solid #dddddd73;
+  padding: 0px 25px;
+}
+.topbar-list li:first-child a {
+  padding-left: 0px;
+}
+.topbar-list li:last-child a {
+  padding-right: 0px;
+}
+.topbar-list li a:hover span {
+  color: var(--main-color);
+}
+
+.andfood-header ul li{
+  list-style-type:none
+}
+.topbar-area {
+  padding: 8px 0;
+  border-bottom: 1px solid #dddddd73;
+  background: var(--main-color);
+  color: #fff !important;
+}
+.topbar-area .col-lg-4 .topbar-list {
+  justify-content: flex-end;
+}
+.topbar-list li a i {
+  margin-right: 7px;
+  color: #fff;
+}
+.topbar-list li a {
+  margin-right: 7px;
+  color: #fff;
+}
+.topbar-list li a span {
+  color: #fff !important;
+}
+.topbar-list li a span:hover {
+  color: rgb(225, 224, 224) !important;
+}
+.topbar-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.top-nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* navbar  */
+.navbar {
+  background-color: white;
+}
+.others-options {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.others-options i {
+  font-size: 18px;
+  margin-top: 10px;
+}
+
+.navbar .navbar-nav {
+  margin-left: 25px;
+}
+.nav-btn {
+  padding: 10px 31px !important;
+  font-size: 18px;
+}
+
+.navbar-brand img {
+  width: 100%;
+}
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+.navbar-toggler-icon i {
+  color: var(--main-color);
+}
+.navbar .nav-item .nav-link {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--black-color);
+  padding: 20px 30px;
+}
+
+.navbar .nav-item .nav-link:hover{
+  /* color: var(--white-color) ; */
+  padding: 20px 30px;
+  background-color: var(--main-color);
+  transition: .5s;
+  -webkit-transition: .5s;
+  -moz-transition: .5s;
+  -ms-transition: .5s;
+  -o-transition: .5s;
+}
+
+
+.navbar-nav li a:hover:after {
+  transform: scaleX(1);
+}
+
+.navbar-nav li a.fromRight:after {
+  transform-origin: 100% 50%;
+}
+
+.navbar-nav li a.fromLeft:after {
+  transform-origin: 0% 50%;
+}
+.nav-responsive {
+  display: none;
+}
+
+.navbar-nav .dropdown-menu {
+  background-color: transparent;
+  border: none;
+  padding-top: 20px;
+}
+.dropdown-container {
+  background-color: white;
+}
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
+.dropdown-item {
+  padding: 10px;
+}
+
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+  position: absolute;
+}
+
+.andfood-navbar.is-sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999999999;
+  box-shadow: 0 2px 28px 0 rgba(0, 0, 0, 0.06);
+  background: #fffdf9 !important;
+  -webkit-animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+  animation: 500ms ease-in-out 0s normal none 1 running fadeInDown;
+  transition: 0.6s;
+}
+
+.logo {
+  height: 60px;
+}
+
+@media (max-width: 1440px) {
+  .topbar-list li a {
+    font-size: 14px;
+    padding: 0 15px;
+  }
+ 
+}
+
+@media (max-width: 1199px) {
+  .topbar-list li a {
+    font-size: 14px;
+    padding: 0 13px;
+  }
+  .navbar .nav-item .nav-link {
+    margin-right: 15px;
+  }
+  .navbar .navbar-nav {
+    margin-left: 10px;
+  }
+
+  .others-options i {
+    font-size: 17px;
+    margin-right: 15px;
+  }
+  .navbar-brand {
+    margin-right: 0px;
+  }
+}
+@media (max-width: 992px) {
+  .others-options {
+    display: none;
+  }
+  .nav-responsive {
+    display: block;
+  }
+
+  .navbar-collapse {
+    position: absolute;
+    top: 99%;
+    background-color: white;
+    z-index: 9;
+    left: 0;
+    right: 0;
+    padding: 25px;
+  }
+  .top-nav-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+@media (max-width: 767px) {
+  .search-overlay .search-overlay-form {
+    max-width: 280px;
+    width: 280px;
+  }
+}
