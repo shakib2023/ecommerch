@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ProductOffer;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Blog;
@@ -33,6 +34,21 @@ class SiteController extends Controller
     return view('login');
    }
 
+    public function orderProduct(Request $request,$id)
+    {
+        $placeOrder = ProductOffer::create([
+            'product_id'=>$id,
+            'quantity'=>$request->post('quantity'),
+            'price'=>$request->post('quantity') * $request->post('offerPrice'),
+            'address'=>$request->post('address'),
+            'phone'=>$request->post('phoneNumber'),
+        ]);
+
+        if ($placeOrder){
+            return redirect()->back()->with(['success'=>'Product Ordered Successfully']);
+        }
+    }
+
 //    this is admin function
 
    function Admin_Home(){
@@ -47,6 +63,27 @@ class SiteController extends Controller
     $all_blog = Blog::get();
     return view('admin.update_blog',['all_blog'=>$all_blog]);
    }
+
+
+    public function showOrderDetails()
+    {
+        $data['allOrderDetails']= ProductOffer::with(['getProduct'])->orderBy('id','DESC')->get();
+
+        return view('admin.order',$data);
+   }
+
+    public function removeOrder(Request $request)
+    {
+        $id = $request->input('id');
+
+        $responce = ProductOffer::where('id', $id)->delete();
+
+        if($responce == 1){
+            return 1;
+        }
+
+   }
+
    function update_form_submit(Request $request){
     $id = $request->id;
     $blog_details = Blog::where('id', $id)->first();
@@ -131,6 +168,8 @@ class SiteController extends Controller
 function add_blog_submit(Request $request){
     $blog_title = $request->input('blog_title');
     $details = $request->input('details');
+    $product_offer_price = $request->input('product_offer_price');
+    $product_actual_price = $request->input('product_actual_price');
 
 // start in blog image
     $blog_image =  $request->file('blog_image')->store('/public/blog_image');
@@ -145,6 +184,8 @@ function add_blog_submit(Request $request){
          'blog_title' => $blog_title,
          'details' => $details,
          'blog_image' => $blog_image,
+         'product_offer_price' => $product_offer_price,
+         'product_actual_price' => $product_actual_price,
 
      ]);
 

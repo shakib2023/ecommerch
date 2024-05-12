@@ -25,7 +25,7 @@
                     <div class="position-sticky">
                     <div class="list-group list-group-flush mx-3">
 
-                    <a href="{{url('admin')}}" class="list-group-item list-group-item-action py-2 ripple active">
+                    <a href="{{url('admin')}}" class="list-group-item list-group-item-action py-2 ripple">
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>All Blogs</span>
                       </a>
 
@@ -36,7 +36,7 @@
                         <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Blog</span>
                         </a>
 
-                        <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple">
+                        <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple active">
                             <i class="fa fa-list-alt me-3"></i><span>Order</span>
                         </a>
 
@@ -59,28 +59,27 @@
                           <!-- this is table head -->
                         <thead class="table-dark ">
                           <tr>
-                            <th class="th-sm">Image</th>
-                            <th class="th-sm">Blog Title</th>
-                            <th class="th-sm">Details</th>
-                            <th class="th-sm">Delete</th>
+                            <th class="th-sm">Id</th>
+                            <th class="th-sm">Product Name</th>
+                            <th class="th-sm">Quantity</th>
+                            <th class="th-sm">Price</th>
+                            <th class="th-sm">Address</th>
+                            <th class="th-sm">Phone</th>
+                            <th class="th-sm">Action</th>
 
                           </tr>
                          </thead>
                        <!-- this is table body  end-->
 
                        <tbody>
-                       @foreach ($all_blog as $blog)
+                       @foreach ($allOrderDetails as $key => $blog)
             <tr>
-                <td class="th-sm ">
-                <img src="{{$blog->blog_image}}" class="card-img-top" alt="Image">
-                </td>
-                <td class="th-sm "><b>{{$blog->blog_title}}</b></td>
-                <td class="th-sm ">
-                  @php
-                  echo substr($blog->details,0,500)
-                  @endphp
-
-                </td>
+                <td class="th-sm "><b>{{++$key}}</b></td>
+                <td class="th-sm "><b>{{\Illuminate\Support\Str::limit($blog->getProduct->blog_title,40,'...')}}</b></td>
+                <td class="th-sm ">{{$blog->quantity}}</td>
+                <td class="th-sm ">{{$blog->price}}</td>
+                <td class="th-sm ">{{$blog->address}}</td>
+                <td class="th-sm ">{{$blog->phone}}</td>
 
                 <td class="th-sm ">
                 <button onclick="remove_blog({!!$blog->id!!})"  class="btn btn-danger">Delete</button>
@@ -118,7 +117,7 @@ Swal.fire({
 }).then((result) => {
   if (result.isConfirmed) {
     axios
-           .get("/remove-blog", { params: { id: id } })
+           .get("/remove-order", { params: { id: id } })
          .then(function (response) {
 
            if(response.status == 200 && response.data == 1){

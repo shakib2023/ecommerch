@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Admin extends Model
 {
-    public $table='Admin';
+    public $table='admin';
     public $primaryKey='id';
     public $incrementing=true;
     public $keyType='int';

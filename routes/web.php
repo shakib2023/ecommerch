@@ -20,6 +20,7 @@ Route::get('/about', [SiteController::class, 'About']);
 Route::get('/contact', [SiteController::class, 'Contact']);
 Route::get('/blog', [SiteController::class, 'Blog']);
 Route::get('/details/{id}', [SiteController::class, 'Details']);
+Route::post('/product-order/{id}', [SiteController::class, 'orderProduct'])->name('orderProduct');
 
 // authentication
 Route::get('/reg', [SiteController::class, 'Registation']);
@@ -32,6 +33,8 @@ Route::post('/admin-logout', [SiteController::class, 'admin_logout']);
 Route::get('/admin', [SiteController::class, 'Admin_Home'])->middleware('AdminAuth');
 Route::get('/add-blog', [SiteController::class, 'Add_blog'])->middleware('AdminAuth');
 Route::get('/update', [SiteController::class, 'update_blog'])->middleware('AdminAuth');
+Route::get('/show-order-details', [SiteController::class, 'showOrderDetails'])->middleware('AdminAuth')->name('show-order-details');
+Route::get('/remove-order', [SiteController::class, 'removeOrder'])->middleware('AdminAuth')->name('remove-order');
 
 // admin works
 Route::get('/update-form/{id}', [SiteController::class, 'update_form_submit'])->middleware('AdminAuth');

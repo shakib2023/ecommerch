@@ -50,7 +50,15 @@
             <div class="card home-card">
             <img src="{{$blog->blog_image}}" class="card-img-top" alt="Image">
             <div class="card-body">
-                <h5 class="card-title">{{$blog->blog_title}}</h5>
+                <h5 class="card-title">{{\Illuminate\Support\Str::limit($blog->blog_title,48,'...')}}</h5>
+                <div class="row d-flex">
+                    <div class="col-auto">
+                        <span><del>TK {{$blog->product_actual_price}}</del></span>
+                    </div>
+                    <div class="col-auto">
+                        <span class="badge rounded-pill text-bg-primary">TK {{$blog->product_offer_price}}</span>
+                    </div>
+                </div>
                 <a href="{{url('details',['id' => $blog->id])}}" class="btn btn-primary">Details</a>
             </div>
             </div>
