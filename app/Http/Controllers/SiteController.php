@@ -57,23 +57,29 @@ class SiteController extends Controller
         }
     }
 
-    public function sendEmail($email,$phone,$projectDetails,$qty,$price)
+    public function sendEmail($email, $phone, $projectDetails, $qty, $price)
     {
-        $defaultEmail='shakibahmedshakibahmed2@gmail.com';
-        $defaultName='Ecommerce';
+        $defaultEmail = 'shakibahmedshakibahmed2@gmail.com';
+        $defaultName = 'Ecommerce';
+
+        // Ensure $projectDetails is not null and set default values if needed
+        $productName = isset($projectDetails->blog_title) ? $projectDetails->blog_title : 'Unknown Product';
+        $productDescription = !empty($projectDetails->details) ? $projectDetails->details : 'No Description';
+        $productActualPrice = isset($projectDetails->product_actual_price) ? $projectDetails->product_actual_price : 0;
+
         Mail::send('orderConfirmation', [
             'company' => 'Company Name',
-            'sendingInformation'=>[
-                'name'=>!empty(Auth::user()->name) ? Auth::user()->name:'',
-                'email'=>$email,
-                'phone'=>$phone,
-                'productName'=>$projectDetails->blog_title,
-                'productDescription'=>!empty($projectDetails->details)?$projectDetails->details:'',
-                'product_actual_price'=>$projectDetails->product_actual_price,
-                'qty'=>$qty,
-                'price'=>$price,
-                'defaultEmail'=>$defaultEmail,
-                'defaultName'=>$defaultName
+            'sendingInformation' => [
+                'name' => !empty(Auth::user()->name) ? Auth::user()->name : 'Guest',
+                'email' => $email,
+                'phone' => $phone,
+                'productName' => $productName,
+                'productDescription' => $productDescription,
+                'product_actual_price' => $productActualPrice,
+                'qty' => $qty,
+                'price' => $price,
+                'defaultEmail' => $defaultEmail,
+                'defaultName' => $defaultName
             ]
         ], function ($message) use ($defaultEmail, $defaultName, $email) {
             $message->to($email)->subject(__('Your Order Has Placed'))->from(
@@ -82,6 +88,7 @@ class SiteController extends Controller
             );
         });
     }
+
 
 //    this is admin function
 
