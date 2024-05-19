@@ -6,7 +6,9 @@ use App\Models\ProductOffer;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Blog;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
@@ -44,9 +46,41 @@ class SiteController extends Controller
             'phone'=>$request->post('phoneNumber'),
         ]);
 
+        $productDetails = Blog::where('id',$placeOrder->product_id)->first();
+
+        if ($placeOrder){
+            $this->sendEmail($request->post('email'),$placeOrder->phone,$productDetails,$request->post('quantity'),$placeOrder->price);
+        }
+
         if ($placeOrder){
             return redirect()->back()->with(['success'=>'Product Ordered Successfully']);
         }
+    }
+
+    public function sendEmail($email,$phone,$projectDetails,$qty,$price)
+    {
+        $defaultEmail='shakibahmedshakibahmed2@gmail.com';
+        $defaultName='Ecommerce';
+        Mail::send('orderConfirmation', [
+            'company' => 'Company Name',
+            'sendingInformation'=>[
+                'name'=>!empty(Auth::user()->name) ? Auth::user()->name:'',
+                'email'=>$email,
+                'phone'=>$phone,
+                'productName'=>$projectDetails->blog_title,
+                'productDescription'=>!empty($projectDetails->details)?$projectDetails->details:'',
+                'product_actual_price'=>$projectDetails->product_actual_price,
+                'qty'=>$qty,
+                'price'=>$price,
+                'defaultEmail'=>$defaultEmail,
+                'defaultName'=>$defaultName
+            ]
+        ], function ($message) use ($defaultEmail, $defaultName, $email) {
+            $message->to($email)->subject(__('Your Order Has Placed'))->from(
+                $defaultEmail,
+                $defaultName
+            );
+        });
     }
 
 //    this is admin function
