@@ -61,6 +61,7 @@
                 </div>
                 <a href="{{url('details',['id' => $blog->id])}}" class="btn btn-primary">Details</a>
             </div>
+            
             </div>
         </div>
 @endforeach

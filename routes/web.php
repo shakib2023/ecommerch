@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Auth;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,6 +18,7 @@ use Illuminate\Support\Facades\Auth;
 
 Route::get('/', [SiteController::class, 'home']);
 Route::get('/about', [SiteController::class, 'About']);
+Route::get('/payment', [SiteController::class, 'Payment']);
 Route::get('/contact', [SiteController::class, 'Contact']);
 Route::get('/blog', [SiteController::class, 'Blog']);
 Route::get('/details/{id}', [SiteController::class, 'Details']);
@@ -25,6 +27,7 @@ Route::post('/product-order/{id}', [SiteController::class, 'orderProduct'])->nam
 // authentication
 Route::get('/reg', [SiteController::class, 'Registation']);
 Route::get('/login', [SiteController::class, 'Login']);
+Route::get('/payment', [SiteController::class, 'Payment']);
 Route::post('/admin-registaion', [SiteController::class, 'admin_registaion']);
 Route::post('/admin-login', [SiteController::class, 'admin_login']);
 Route::post('/admin-logout', [SiteController::class, 'admin_logout']);

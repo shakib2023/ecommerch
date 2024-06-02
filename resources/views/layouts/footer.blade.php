@@ -4,13 +4,13 @@
     <section class="d-flex justify-content-center justify-content-lg-between p-5 border-bottom">
       <!-- Left -->
       <div class="me-5 d-none d-lg-block">
-        <span>Get connected with us on social networks:</span>
+        <span><h3><b><i>Our social networks:</h3></b></i></span>
       </div>
       <!-- Left -->
 
       <!-- Right -->
       <div>
-        <a href="https://www.facebook.com" class="me-4 text-reset">
+       <a href="https://www.facebook.com" class="me-4 text-reset">
           <i class="fab fa-facebook-f"></i>
         </a>
         <a href="" class="me-4 text-reset">
@@ -34,6 +34,11 @@
     <!-- Section: Social media -->
 
     <!-- Section: Links  -->
+    
+    <!-- Section: Links  -->
+
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     <section class="">
       <div class="container text-center text-md-start mt-5">
         <!-- Grid row -->
@@ -110,12 +115,7 @@
         <!-- Grid row -->
       </div>
     </section>
-    <!-- Section: Links  -->
-
-    <!-- Copyright -->
-    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-      © 2021 Copyright:
-      <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      
     </div>
     <!-- Copyright -->
   </footer>

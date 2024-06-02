@@ -26,14 +26,14 @@
                     <div class="list-group list-group-flush mx-3">
 
                     <a href="{{url('admin')}}" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>All Blogs</span>
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>All Product</span>
                       </a>
 
                     <a href="{{url('add-blog')}}" class="list-group-item list-group-item-action py-2 ripple ">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Blog</span>
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Product</span>
                       </a>
                       <a href="{{url('update')}}" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Blog</span>
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Product</span>
                         </a>
 
                         <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple active">
@@ -75,7 +75,7 @@
                        @foreach ($allOrderDetails as $key => $blog)
             <tr>
                 <td class="th-sm "><b>{{++$key}}</b></td>
-                <td class="th-sm "><b>{{\Illuminate\Support\Str::limit($blog->getProduct->blog_title,40,'...')}}</b></td>
+                <td class="th-sm "><b>{{ $blog->getProduct->blog_title ?? '' ? \Illuminate\Support\Str::limit($blog->getProduct->blog_title,40,'...') : '' }}</b></td>
                 <td class="th-sm ">{{$blog->quantity}}</td>
                 <td class="th-sm ">{{$blog->price}}</td>
                 <td class="th-sm ">{{$blog->address}}</td>

@@ -26,14 +26,14 @@
                     <div class="list-group list-group-flush mx-3">
 
                     <a href="{{url('admin')}}" class="list-group-item list-group-item-action py-2 ripple active">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>All Blogs</span>
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>All Product</span>
                       </a>
 
                     <a href="{{url('add-blog')}}" class="list-group-item list-group-item-action py-2 ripple ">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Blog</span>
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Product</span>
                       </a>
                       <a href="{{url('update')}}" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Blog</span>
+                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Product</span>
                         </a>
 
                         <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple">
@@ -109,7 +109,7 @@
 
 Swal.fire({
   title: 'Are you sure?',
-  text: "Remove Blog",
+  text: "Remove Product",
   icon: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',

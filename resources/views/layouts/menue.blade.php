@@ -7,7 +7,7 @@
       <nav class="navbar navbar-expand-lg py-0">
         <div class="container">
           <a class="navbar-brand pb-0" href="{{url('/')}}"
-            >SAH75</a>
+            >Sports Store</a>
           <div class="nav-responsive">
 
             <button
@@ -49,7 +49,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="{{url('/login')}}">Login </a>
+                <a class="nav-link" href="{{url('/payment')}}">Payment </a>
               </li>
 
             </ul>

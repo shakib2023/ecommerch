@@ -38,11 +38,11 @@
         </tr>
         <tr>
             <td class="column-title">First & Last name<td>
-            <td class="column-detail">John Doe<td>
+            <td class="column-detail">{{$sendingInformation['name']}}<td>
         </tr>
         <tr>
             <td class="column-title">Company name<td>
-            <td class="column-detail">The John Doe Ltd.<td>
+            <td class="column-detail">{{$company}}<td>
             </td>
         <tr>
             <td class="column-title">Phone<td>

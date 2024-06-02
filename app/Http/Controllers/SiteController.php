@@ -35,6 +35,9 @@ class SiteController extends Controller
    function Login(){
     return view('login');
    }
+   function Payment(){
+    return view('payment');
+   }
 
     public function orderProduct(Request $request,$id)
     {
