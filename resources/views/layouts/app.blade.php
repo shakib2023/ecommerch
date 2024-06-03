@@ -71,7 +71,7 @@
 </head>
 <body>
     <div id="app">
-
+        @include('sweetalert::alert')
         <main>
         @include('layouts.menue')
 
@@ -105,5 +105,6 @@ CKEDITOR.replace( 'summary-ckeditor' );
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <!-- Custom js -->
     <script src="{{asset('js/custom.js')}}"></script>
+@stack('custom.script')
 </body>
 </html>

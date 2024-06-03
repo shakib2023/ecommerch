@@ -58,10 +58,15 @@
                     <div class="col-auto">
                         <span class="badge rounded-pill text-bg-primary">TK {{$blog->product_offer_price}}</span>
                     </div>
+                    <span class="mt-2">Category:
+    <a href="{{ route('admin.category.details', ['id' => isset($blog->category->postCategory) && !empty($blog->category->postCategory) ? $blog->category->postCategory->id : '0']) }}">
+        {{ isset($blog->category->postCategory) && !empty($blog->category->postCategory) ? $blog->category->postCategory->name : '' }}
+    </a>
+</span>
                 </div>
                 <a href="{{url('details',['id' => $blog->id])}}" class="btn btn-primary">Details</a>
             </div>
-            
+
             </div>
         </div>
 @endforeach

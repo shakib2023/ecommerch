@@ -43,12 +43,23 @@
                     <form method="post" action="{{route('orderProduct',$blog_details->id)}}">
                         @csrf
                         <input type="hidden" name="offerPrice" value="{{$blog_details->product_offer_price}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Quantity</label>
+                                    <input type="number" name="quantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Quantity</label>
-                            <input type="number" name="quantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="mb-3">
+                                    <label for="exampleInputEmail1" class="form-label">Total Price</label>
+                                    <input type="number" name="totalPriceQuantity" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
+                                </div>
+                            </div>
                         </div>
+
                         <div class="mb-3">
                             <label for="exampleFormControlTextarea1" class="form-label">Address</label>
                             <textarea name="address" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
@@ -75,3 +86,19 @@
 </div>
 
 @endsection
+
+@push('custom.script')
+    <script>
+        let offerPrice = `{{$blog_details->product_offer_price}}`
+        document.querySelector('input[name="quantity"]').addEventListener('input',(event)=>{
+
+            let quantity = event.target.closest('.form-control').value
+            let totalCountOfQuantity = parseInt(offerPrice) * parseInt(quantity);
+
+            document.querySelector('input[name="totalPriceQuantity"]').value = totalCountOfQuantity
+
+        });
+
+    </script>
+
+@endpush

@@ -25,20 +25,24 @@
                         <div class="list-group list-group-flush mx-3">
 
                             <a href="{{url('admin')}}" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>All Product</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>All Items</span>
                             </a>
 
-                    <a href="{{url('add-blog')}}" class="list-group-item list-group-item-action py-2 ripple active">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Product</span>
-                      </a>
-                      <a href="{{url('update')}}" class="list-group-item list-group-item-action py-2 ripple">
-                        <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Product</span>
-                        </a>
+                            <a href="{{url('add-blog')}}" class="list-group-item list-group-item-action py-2 ripple active">
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Item</span>
+                            </a>
+                            <a href="{{url('update')}}" class="list-group-item list-group-item-action py-2 ripple">
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Item</span>
+                            </a>
                             <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple">
                                 <i class="fa fa-list-alt me-3"></i><span>Order</span>
                             </a>
+                            <a href="{{route('admin.category')}}" class="list-group-item list-group-item-action py-2 ripple">
+                                <i class="fa fa-list-alt me-3"></i><span>Category</span>
+                            </a>
 
-                            </i><span>Logout</span></a
+                            <a type="button" id="userLogout" class="list-group-item list-group-item-action py-2 ripple "
+                            ><i class="fa-solid fa-right-from-bracket me-3" style="font-size:20px"></i><span>Logout</span></a
                             >
 
                         </div>
@@ -52,7 +56,7 @@
             <!-- main content start -->
             <div class="col-lg-9">
                 <article class="card">
-                    <div class="card-header text-center">Add Product</div>
+                    <div class="card-header text-center">Add Item</div>
 
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
@@ -60,9 +64,9 @@
                                 <form>
                                     <!-- this is form title -->
                                     <div class="my-4">
-                                        <label class="form-label">Product Title</label>
+                                        <label class="form-label">Item Title</label>
                                         <input id="blog_title" type="text" class="form-control" name="name" required
-                                               autofocus placeholder="Product Title">
+                                               autofocus placeholder="Item Title">
                                     </div>
                                     <!-- this is form details -->
                                     <div class="my-4">
@@ -80,6 +84,16 @@
                                     </div>
 
                                     <div class="my-4">
+                                        <label for="inputState" class="form-label">Parent Category</label>
+                                        <select id="parentCategoryId" class="form-select" name="parentCategoryId">
+                                            <option value="" selected>Choose Category</option>
+                                            @foreach($allCategories as $category)
+                                                <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="my-4">
                                         <label class="form-label">Offer Price</label>
                                         <input id="product_offer_price" type="number" class="form-control" name="offerPrice" required
                                                autofocus placeholder="Product Offer price">
@@ -87,7 +101,7 @@
 
 
                                     <div class="my-4">
-                                        <label class="form-label">Product Image</label>
+                                        <label class="form-label">Item Image</label>
 
                                         <input id="demo_img" type="file" class="form-control">
 
@@ -127,6 +141,7 @@
             )[0];
             var product_actual_price = $("#product_actual_price").val() ? $("#product_actual_price").val() : false;
             var product_offer_price = $("#product_offer_price").val() ? $("#product_offer_price").val() : false;
+            var parentCategoryId = $("#parentCategoryId").val() ? $("#parentCategoryId").val() : false;
 
 
             var formData = new FormData();
@@ -136,6 +151,7 @@
             formData.append("blog_image", blog_image);
             formData.append("product_actual_price", product_actual_price);
             formData.append("product_offer_price", product_offer_price);
+            formData.append("parentCategoryId", parentCategoryId);
 
             axios
                 .post("/add-blog-submit", formData)
@@ -146,7 +162,7 @@
                         Swal.fire({
                             position: "top-center",
                             icon: "success",
-                            title: "Product Add Successfully",
+                            title: "Blog Add Successfully",
                             showConfirmButton: false,
                             timer: 1500,
                         });

@@ -2,20 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\ProductOffer;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Blog;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class SiteController extends Controller
 {
-    function home(){
-        $all_blog = Blog::get();
-        return view('home',['all_blog'=>$all_blog]);
-   }
+    function home(Request $request)
+    {
+
+        $search = $request->input('search');
+
+        if (!empty($search)) {
+            $all_blog = Blog::with('category.postCategory')
+                ->where('blog_title', 'like', '%' . $search . '%')
+                ->orWhere('details', 'like', '%' . $search . '%')
+                ->get();
+
+        } else {
+            $all_blog = Blog::with('category.postCategory')->get();
+        }
+        return view('home', ['all_blog' => $all_blog]);
+
+    }
     function About(){
         return view('about');
    }
@@ -100,9 +115,11 @@ class SiteController extends Controller
     return view('admin.admin',['all_blog'=>$all_blog]);
    }
 
-   function Add_blog(){
-    return view('admin.add_blog');
-   }
+    function Add_blog()
+    {
+        $data['allCategories'] = Category::all();
+        return view('admin.add_blog', $data);
+    }
    function update_blog(Request $request){
     $all_blog = Blog::get();
     return view('admin.update_blog',['all_blog'=>$all_blog]);
@@ -209,35 +226,45 @@ class SiteController extends Controller
 
 //  add blog
 
-function add_blog_submit(Request $request){
-    $blog_title = $request->input('blog_title');
-    $details = $request->input('details');
-    $product_offer_price = $request->input('product_offer_price');
-    $product_actual_price = $request->input('product_actual_price');
+    function add_blog_submit(Request $request)
+    {
+        $blog_title = $request->input('blog_title');
+        $details = $request->input('details');
+        $product_offer_price = $request->input('product_offer_price');
+        $product_actual_price = $request->input('product_actual_price');
 
 // start in blog image
-    $blog_image =  $request->file('blog_image')->store('/public/blog_image');
+        $blog_image = $request->file('blog_image')->store('/public/blog_image');
 
-       $blog_image=(explode('/',$blog_image))[2];
+        $blog_image = (explode('/', $blog_image))[2];
 
-       $host=$_SERVER['HTTP_HOST'];
-       $blog_image="http://".$host."/storage/blog_image/".$blog_image;
+        $host = $_SERVER['HTTP_HOST'];
+        $blog_image = "http://" . $host . "/storage/blog_image/" . $blog_image;
 // end in blog image
 
-    $responce = Blog::insert([
-         'blog_title' => $blog_title,
-         'details' => $details,
-         'blog_image' => $blog_image,
-         'product_offer_price' => $product_offer_price,
-         'product_actual_price' => $product_actual_price,
+        $responce = Blog::create([
+            'blog_title' => $blog_title,
+            'details' => $details,
+            'blog_image' => $blog_image,
+            'product_offer_price' => $product_offer_price,
+            'product_actual_price' => $product_actual_price,
 
-     ]);
+        ]);
 
-     if($responce == 1){
-         return 1;
-     }
+        if ($request->post('parentCategoryId')) {
+            DB::table('post_categories')->insert([
+                'post_id' => $responce->id,
+                'category_id' => $request->post('parentCategoryId'),
+                'created_at' => now(),
+                'updated_at' => now()
+            ]);
+        }
 
-}
+        if ($responce) {
+            return 1;
+        }
+
+    }
 
 function remove_blog(Request $request){
     $id = $request->input('id');
