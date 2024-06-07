@@ -101,6 +101,29 @@
                                         <textarea class="form-control" id="summary-ckeditor" name="summary-ckeditor">{{$blog_details->details}}</textarea>
 
                                     </div>
+
+                                    <div class="my-4">
+                                        <label class="form-label">Actual Price</label>
+                                        <input id="product_actual_price" type="number" class="form-control" value="{{$blog_details->product_actual_price}}" name="actualPrice" required
+                                               autofocus placeholder="Product Actual price">
+                                    </div>
+
+                                    <div class="my-4">
+                                        <label class="form-label">Offer Price</label>
+                                        <input id="product_offer_price" type="number" class="form-control" value="{{$blog_details->product_offer_price}}" name="offerPrice" required
+                                               autofocus placeholder="Product Offer price">
+                                    </div>
+
+
+                                    <div class="my-4">
+                                        <label for="inputState" class="form-label">Parent Category</label>
+                                        <select id="parentCategoryId" class="form-select" name="parentCategoryId">
+                                            <option value="" selected>Choose Category</option>
+                                            @foreach($allCategories as $category)
+                                                <option value="{{$category->id}}" {{$category->id == $blog_details->category->category_id?'selected':''}}>{{$category->name}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
                                     <!-- this is form image -->
                                     <div class="my-4">
                                         <label class="form-label">Blog Image</label>
