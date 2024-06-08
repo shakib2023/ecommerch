@@ -12,6 +12,26 @@
            display: inline-block;
            vertical-align: middle;
        }
+
+       .form-container {
+           display: flex;
+           align-items: center;
+       }
+
+       .form-inline {
+           display: flex;
+           width: 100%;
+       }
+
+       .form-inline .form-control {
+           flex: 1;
+           margin-right: 10px;
+       }
+
+       .form-inline .btn {
+           white-space: nowrap;
+       }
+
    </style>
 
    <header class="andfood-header">
@@ -23,10 +43,10 @@
         <div class="container">
           <a class="navbar-brand pb-0" href="{{url('/')}}"
             >Sports Store</a>
-            <div class="form-container ms-4">
+            <div class="form-container ms-1">
                 <form class="form-inline" action="{{route('home')}}" method="get">
                     <input class="form-control" name="search" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit">Search</button>
+                    <button class="btn btn-outline-success" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
                 </form>
             </div>
           <div class="nav-responsive">
@@ -52,6 +72,18 @@
                   href="{{url('/')}}"
                   >Home</a
                 >
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Category
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="background: #fff3cd">
+                        @foreach(getCategory() as $category)
+                            <a class="dropdown-item" href="{{route('admin.category.details',['id'=>$category->id])}}">{{$category->name}}</a>
+                        @endforeach
+
+                    </div>
+                </li>
 
               <li class="nav-item">
                 <a
@@ -80,14 +112,16 @@
                 @else
                     <li class=" nav-item mt-2 pe-1">
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                            Log In
+                            SignIn
                         </button>
                     </li>
                     <li class=" nav-item mt-2">
                         <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#exampleModal1">
-                            Register
+                            SignUp
                         </button>
                     </li>
+
+
                 @endif
 
 
