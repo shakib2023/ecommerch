@@ -40,7 +40,7 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-body">
-                    <form method="post" action="{{route('orderProduct',$blog_details->id)}}">
+                    <form id="orderPlacedForm" method="post" action="{{route('orderProduct',$blog_details->id)}}">
                         @csrf
                         <input type="hidden" name="offerPrice" value="{{$blog_details->product_offer_price}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
                         <div class="row">
@@ -75,7 +75,7 @@
                             <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
 
                         </div>
-                        <button type="submit" class="btn btn-primary">Order Now</button>
+                        <button type="submit" class="btn btn-primary submit">Order Now</button>
                     </form>
                 </div>
             </div>
@@ -93,11 +93,34 @@
         document.querySelector('input[name="quantity"]').addEventListener('input',(event)=>{
 
             let quantity = event.target.closest('.form-control').value
-            let totalCountOfQuantity = parseInt(offerPrice) * parseInt(quantity);
+            if(quantity > 0){
+                let totalCountOfQuantity = parseInt(offerPrice) * parseInt(quantity);
 
-            document.querySelector('input[name="totalPriceQuantity"]').value = totalCountOfQuantity
+                document.querySelector('input[name="totalPriceQuantity"]').value = totalCountOfQuantity
+            }else{
+                event.target.closest('.form-control').value = 1
+            }
+
 
         });
+
+        document.querySelector('.submit').addEventListener('click',(event)=>{
+            event.preventDefault();
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You want to place the order!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, order it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    document.querySelector('#orderPlacedForm').submit()
+                }
+            });
+        })
 
     </script>
 

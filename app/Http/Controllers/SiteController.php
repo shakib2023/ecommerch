@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class SiteController extends Controller
 {
@@ -56,12 +57,14 @@ class SiteController extends Controller
 
     public function orderProduct(Request $request,$id)
     {
+
         $placeOrder = ProductOffer::create([
             'product_id'=>$id,
             'quantity'=>$request->post('quantity'),
             'price'=>$request->post('quantity') * $request->post('offerPrice'),
             'address'=>$request->post('address'),
             'phone'=>$request->post('phoneNumber'),
+            'orderId'=>$this->generateOrderId(),
         ]);
 
         $productDetails = Blog::where('id',$placeOrder->product_id)->first();
@@ -71,8 +74,15 @@ class SiteController extends Controller
         }
 
         if ($placeOrder){
-            return redirect()->back()->with(['success'=>'Product Ordered Successfully']);
+            return redirect()->back()->with(['success'=>'Product Ordered Successfully. Your order id is '.$placeOrder->orderId]);
         }
+    }
+
+    private function generateOrderId(){
+        $timestamp = now()->format('YmdHis');
+        $randomString = Str::random(10);
+        $orderId = $timestamp . $randomString;
+        return $orderId;
     }
 
     public function sendEmail($email, $phone, $projectDetails, $qty, $price)
