@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use PhpParser\Comment;
 
 class Blog extends Model
 {
@@ -18,6 +19,11 @@ class Blog extends Model
     public function category(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(\App\Models\PostCategory::class,'post_id','id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(PostComment::class,'post_id','id')->whereNull('parent_id')->latest();
     }
 
 }

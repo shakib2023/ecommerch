@@ -68,6 +68,7 @@
 
      <!-- Style css -->
      <link rel="stylesheet" href="{{asset('css/style.css')}}">
+    @stack('custom.style')
 </head>
 <body>
     <div id="app">
