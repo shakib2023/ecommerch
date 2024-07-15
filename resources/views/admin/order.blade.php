@@ -67,6 +67,7 @@
                         <th class="th-sm">Quantity</th>
                         <th class="th-sm">Price</th>
                         <th class="th-sm">Address</th>
+                        <th class="th-sm">Order Id</th>
                         <th class="th-sm">Phone</th>
                         <th class="th-sm">Action</th>
 
@@ -78,10 +79,11 @@
                     @foreach ($allOrderDetails as $key => $blog)
                         <tr>
                             <td class="th-sm "><b>{{++$key}}</b></td>
-                            <td class="th-sm "><b>{{\Illuminate\Support\Str::limit($blog->getProduct->blog_title,40,'...')}}</b></td>
+                            <td class="th-sm "><b>{{isset($blog->getProduct->blog_title)&& !empty($blog->getProduct->blog_title)?\Illuminate\Support\Str::limit($blog->getProduct->blog_title,40,'...'):''}}</b></td>
                             <td class="th-sm ">{{$blog->quantity}}</td>
                             <td class="th-sm ">{{$blog->price}}</td>
                             <td class="th-sm ">{{$blog->address}}</td>
+                            <td class="th-sm ">{{isset($blog->orderId)&& !empty($blog->orderId)?$blog->orderId:''}}</td>
                             <td class="th-sm ">{{$blog->phone}}</td>
 
                             <td class="th-sm ">
