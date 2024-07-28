@@ -5,6 +5,7 @@ use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostCommentController;
 
 Route::post('/register-new-user',[AuthController::class,'register'])->name('register-user');
 Route::post('/login-user',[AuthController::class,'logIn'])->name('login-user');
@@ -19,9 +20,13 @@ Route::get('/blog', [SiteController::class, 'Blog']);
 Route::get('/details/{id}', [SiteController::class, 'Details']);
 Route::post('/product-order/{id}', [SiteController::class, 'orderProduct'])->name('orderProduct');
 
+Route::controller(PostCommentController::class)->middleware('auth')->group(function (){
+   Route::post('product-comment','postComment')->name('product-comment');
+});
+
 // authentication
 Route::get('/reg', [SiteController::class, 'Registation']);
-Route::get('/login', [SiteController::class, 'Login']);
+Route::get('/login', [SiteController::class, 'Login'])->name('log-login');
 Route::get('/payment', [SiteController::class, 'Payment']);
 
 Route::post('/admin-registaion', [SiteController::class, 'admin_registaion']);

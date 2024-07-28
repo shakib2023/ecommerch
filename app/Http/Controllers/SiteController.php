@@ -40,7 +40,18 @@ class SiteController extends Controller
    }
     function Details(Request $request){
         $id = $request->id;
-        $blog_details = Blog::where('id', $id)->first();
+        $blog_details = Blog::with(['comments'=>function($query){
+            $query->select('id','post_id','user_id','parent_id','comment','created_at')
+                ->with(['user'=>function($query){
+                    $query->select('id','name');
+                },'childComment'=>function($query){
+                    $query->select('id','parent_id','comment','created_at','user_id')
+                        ->with(['user'=>function($query){
+                            $query->select('id','name');
+                        }]);
+                }]);
+        }])->where('id', $id)->first();
+
         return view('details',['blog_details'=>$blog_details ]);
    }
 
@@ -82,9 +93,9 @@ class SiteController extends Controller
     }
 
     private function generateOrderId(){
-        $timestamp = now()->format('YmdHis');
-        $randomString = Str::random(10);
-        $orderId = $timestamp . $randomString;
+        $timestamp = now()->format('ym');
+        $randomString = Str::random(3);
+        $orderId = $timestamp.'-'. $randomString;
         return $orderId;
     }
 
