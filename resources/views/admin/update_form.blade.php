@@ -39,38 +39,7 @@
                                 <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Item</span>
                             </a>
 
-                            <a href="{{url('all-university-admin')}}" class="list-group-item list-group-item-action py-2 ripple"
-                            ><i class="fas fa-chart-line fa-fw me-3"></i><span>University Manage</span></a
-                            >
-                            <a href="{{url('add-services')}}" class="list-group-item list-group-item-action py-2 ripple"
-                            ><i class="fas fa-chart-line fa-fw me-3"></i><span>Add services</span></a
-                            >
-                            <a href="{{url('manage-course')}}" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-chart-pie fa-fw me-3"></i><span>Manage Course</span>
-                            </a>
-                            <a href="{{url('manage-services')}}" class="list-group-item list-group-item-action py-2 ripple"
-                            ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Manage Services</span></a
-                            >
-                            <a href="{{url('manage-course')}}" class="list-group-item list-group-item-action py-2 ripple"
-                            ><i class="fas fa-globe fa-fw me-3"></i><span>Edit Course</span></a
-                            >
-                            <a href="{{url('manage-services')}}" class="list-group-item list-group-item-action py-2 ripple"
-                            ><i class="fas fa-globe fa-fw me-3"></i><span>Edit Services</span></a
-                            >
-
-
-                            <a href="{{url('user-maintain')}}" class="list-group-item list-group-item-action py-2 ripple"
-                            ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
-                            >
-
-                            <a href="{{url('add-seminer')}}" class="list-group-item list-group-item-action py-2 ripple"
-                            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Add Seminar</span></a
-                            >
-                            <a href="{{url('manage-seminer')}}" class="list-group-item list-group-item-action py-2 ripple"
-                            ><i class="fas fa-money-bill fa-fw me-3"></i><span>Manage Seminar</span></a
-                            >
-                            <a type="button" id="userLogout" class="list-group-item list-group-item-action py-2 ripple "
-                            ><i class="fa-solid fa-right-from-bracket me-3" style="font-size:20px"></i><span>Logout</span></a
+                           <i class="fa-solid fa-right-from-bracket me-3" style="font-size:20px"></i><span>Logout</span></a
                             >
 
                         </div>
@@ -182,7 +151,7 @@
                         Swal.fire({
                             position: "top-center",
                             icon: "success",
-                            title: "Blog Update Successfully",
+                            title: "Item Update Successfully",
                             showConfirmButton: false,
                             timer: 1500,
                         });

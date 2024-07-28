@@ -26,14 +26,14 @@
                         <div class="list-group list-group-flush mx-3">
 
                             <a href="{{url('admin')}}" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>All Items</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>All Product</span>
                             </a>
 
                             <a href="{{url('add-blog')}}" class="list-group-item list-group-item-action py-2 ripple ">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Item</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Product</span>
                             </a>
                             <a href="{{url('update')}}" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Item</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Product</span>
                             </a>
 
                             <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple active">
@@ -69,7 +69,9 @@
                         <th class="th-sm">Address</th>
                         <th class="th-sm">Order Id</th>
                         <th class="th-sm">Phone</th>
+                        
                         <th class="th-sm">Action</th>
+                        
 
                     </tr>
                     </thead>
@@ -85,7 +87,7 @@
                             <td class="th-sm ">{{$blog->address}}</td>
                             <td class="th-sm ">{{isset($blog->orderId)&& !empty($blog->orderId)?$blog->orderId:''}}</td>
                             <td class="th-sm ">{{$blog->phone}}</td>
-
+                            
                             <td class="th-sm ">
                                 <button onclick="remove_blog({!!$blog->id!!})"  class="btn btn-danger">Delete</button>
                             </td>

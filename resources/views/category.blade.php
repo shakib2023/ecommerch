@@ -56,7 +56,7 @@
                 </div>
                 <a href="{{url('details',['id' => $blog->id])}}" class="btn btn-primary">Details</a>
 
-                <a href="tel:0123456789" class="btn btn-primary mt-2"><i class="fa-solid fa-phone"></i></a>
+                
             </div>
             </div>
         </div>

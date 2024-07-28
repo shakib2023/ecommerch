@@ -55,6 +55,8 @@ class SiteController extends Controller
     return view('payment');
    }
 
+  
+
     public function orderProduct(Request $request,$id)
     {
 
@@ -64,6 +66,7 @@ class SiteController extends Controller
             'price'=>$request->post('quantity') * $request->post('offerPrice'),
             'address'=>$request->post('address'),
             'phone'=>$request->post('phoneNumber'),
+            
             'orderId'=>$this->generateOrderId(),
         ]);
 

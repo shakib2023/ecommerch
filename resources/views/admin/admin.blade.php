@@ -26,23 +26,26 @@
                         <div class="list-group list-group-flush mx-3">
 
                             <a href="{{url('admin')}}" class="list-group-item list-group-item-action py-2 ripple active">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>All Items</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>All Product</span>
                             </a>
 
                             <a href="{{url('add-blog')}}" class="list-group-item list-group-item-action py-2 ripple ">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Item</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Product</span>
+
+
+                            <a href="{{route('admin.category')}}" class="list-group-item list-group-item-action py-2 ripple">
+                                <i class="fa fa-list-alt me-3"></i><span>Add Category</span>
+                            </a>
+
                             </a>
                             <a href="{{url('update')}}" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Item</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Product</span>
                             </a>
 
                             <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple">
                                 <i class="fa fa-list-alt me-3"></i><span>Order</span>
                             </a>
 
-                            <a href="{{route('admin.category')}}" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fa fa-list-alt me-3"></i><span>Category</span>
-                            </a>
 
                             <a type="button" id="userLogout" class="list-group-item list-group-item-action py-2 ripple "
                             ><i class="fa-solid fa-right-from-bracket me-3" style="font-size:20px"></i><span>Logout</span></a
@@ -67,7 +70,7 @@
                         <th class="th-sm">Blog Title</th>
                         <th class="th-sm">Details</th>
                         <th class="th-sm">Delete</th>
-
+                       
                     </tr>
                     </thead>
                     <!-- this is table body  end-->

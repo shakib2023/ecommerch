@@ -105,6 +105,8 @@
                 <a class="nav-link" href="{{url('/payment')}}">Payment </a>
               </li>
 
+        
+
                 @if(\Illuminate\Support\Facades\Auth::user())
                     <li class=" nav-item">
                         <a class="nav-link" href="{{route('logout-user')}}">LogOut </a>

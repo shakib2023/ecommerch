@@ -25,14 +25,14 @@
                         <div class="list-group list-group-flush mx-3">
 
                             <a href="{{url('admin')}}" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>All Items</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>All Product</span>
                             </a>
 
                             <a href="{{url('add-blog')}}" class="list-group-item list-group-item-action py-2 ripple active">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Item</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Add Product</span>
                             </a>
                             <a href="{{url('update')}}" class="list-group-item list-group-item-action py-2 ripple">
-                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Item</span>
+                                <i class="fas fa-chart-area fa-fw me-3"></i><span>Update Product</span>
                             </a>
                             <a href="{{route('show-order-details')}}" class="list-group-item list-group-item-action py-2 ripple">
                                 <i class="fa fa-list-alt me-3"></i><span>Order</span>
@@ -56,7 +56,7 @@
             <!-- main content start -->
             <div class="col-lg-9">
                 <article class="card">
-                    <div class="card-header text-center">Add Item</div>
+                    <div class="card-header text-center">Add Product</div>
 
                     <div class="row">
                         <div class="col-lg-8 mx-auto">
@@ -64,7 +64,7 @@
                                 <form>
                                     <!-- this is form title -->
                                     <div class="my-4">
-                                        <label class="form-label">Item Title</label>
+                                        <label class="form-label">Item Product</label>
                                         <input id="blog_title" type="text" class="form-control" name="name" required
                                                autofocus placeholder="Item Title">
                                     </div>
@@ -101,7 +101,7 @@
 
 
                                     <div class="my-4">
-                                        <label class="form-label">Item Image</label>
+                                        <label class="form-label">Product Image</label>
 
                                         <input id="demo_img" type="file" class="form-control">
 
@@ -162,7 +162,7 @@
                         Swal.fire({
                             position: "top-center",
                             icon: "success",
-                            title: "Blog Add Successfully",
+                            title: "Item Add Successfully",
                             showConfirmButton: false,
                             timer: 1500,
                         });
